@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "CBiJR0opJ83wBfecyAu5jX9+Xzp5T4GmX9inYbiCmhdwUFkqwGMCYhNYo+BbYCRXqVCVMWmZO8VkhyWpX6SEnw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\MALTEQ\\Documents\\TodoApi\\TodoApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\MALTEQ\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\MALTEQ\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\MALTEQ\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\MALTEQ\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\MALTEQ\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\MALTEQ\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
