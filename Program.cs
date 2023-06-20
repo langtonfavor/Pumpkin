@@ -5,6 +5,8 @@ using Microsoft.OpenApi.Models;
 using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using System.Text;
+using Newtonsoft.Json; // Add this line
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,17 @@ builder.Services.AddSwaggerGen(c =>
 // Add services
 builder.Services.AddHttpClient();
 
+// Enable CORS
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin() // Allow requests from any origin
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // Enable Swagger
@@ -26,21 +39,23 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "PunkApiService v1");
 });
 
-
 // Configure endpoints
-app.MapGet("/beer/menu", async (HttpContext httpContext) =>
+app.MapGet("/api/beer/menu", async (HttpContext httpContext) =>
 {
     var httpClient = httpContext.RequestServices.GetRequiredService<HttpClient>();
     var response = await httpClient.GetAsync("https://api.punkapi.com/v2/beers");
     if (response.IsSuccessStatusCode)
     {
         var beers = await response.Content.ReadAsStringAsync();
-        await httpContext.Response.WriteAsJsonAsync(beers); // Write the beers as JSON response
+        httpContext.Response.StatusCode = 200;
+        httpContext.Response.ContentType = "application/json";
+        await httpContext.Response.WriteAsync(beers, Encoding.UTF8); // Write the beers as JSON response
     }
     else
     {
         httpContext.Response.StatusCode = (int)response.StatusCode;
-        await httpContext.Response.WriteAsJsonAsync("Failed to retrieve beer menu");
+        var errorResponse = JsonConvert.SerializeObject("Failed to retrieve beer menu");
+        await httpContext.Response.WriteAsync(errorResponse, Encoding.UTF8);
     }
 });
 
@@ -52,12 +67,15 @@ app.MapGet("/beer/{id}", async (HttpContext httpContext) =>
     if (response.IsSuccessStatusCode)
     {
         var beer = await response.Content.ReadAsStringAsync();
-        await httpContext.Response.WriteAsJsonAsync(beer); // Write the beer as JSON response
+        httpContext.Response.StatusCode = 200;
+        httpContext.Response.ContentType = "application/json";
+        await httpContext.Response.WriteAsync(beer, Encoding.UTF8); // Write the beer as JSON response
     }
     else
     {
         httpContext.Response.StatusCode = (int)response.StatusCode;
-        await httpContext.Response.WriteAsJsonAsync("Failed to retrieve beer by ID");
+        var errorResponse = JsonConvert.SerializeObject("Failed to retrieve beer by ID");
+        await httpContext.Response.WriteAsync(errorResponse, Encoding.UTF8);
     }
 });
 
@@ -68,12 +86,15 @@ app.MapGet("/beer/random", async (HttpContext httpContext) =>
     if (response.IsSuccessStatusCode)
     {
         var beer = await response.Content.ReadAsStringAsync();
-        await httpContext.Response.WriteAsJsonAsync(beer); // Write the beer as JSON response
+        httpContext.Response.StatusCode = 200;
+        httpContext.Response.ContentType = "application/json";
+        await httpContext.Response.WriteAsync(beer, Encoding.UTF8); // Write the beer as JSON response
     }
     else
     {
         httpContext.Response.StatusCode = (int)response.StatusCode;
-        await httpContext.Response.WriteAsJsonAsync("Failed to retrieve random beer");
+        var errorResponse = JsonConvert.SerializeObject("Failed to retrieve random beer");
+        await httpContext.Response.WriteAsync(errorResponse, Encoding.UTF8);
     }
 });
 
@@ -85,13 +106,19 @@ app.MapGet("/search", async (HttpContext httpContext) =>
     if (response.IsSuccessStatusCode)
     {
         var beers = await response.Content.ReadAsStringAsync();
-        await httpContext.Response.WriteAsJsonAsync(beers); // Write the beers as JSON response
+        httpContext.Response.StatusCode = 200;
+        httpContext.Response.ContentType = "application/json";
+        await httpContext.Response.WriteAsync(beers, Encoding.UTF8); // Write the beers as JSON response
     }
     else
     {
         httpContext.Response.StatusCode = (int)response.StatusCode;
-        await httpContext.Response.WriteAsJsonAsync("Failed to search for beers");
+        var errorResponse = JsonConvert.SerializeObject("Failed to search for beers");
+        await httpContext.Response.WriteAsync(errorResponse, Encoding.UTF8);
     }
 });
+
+// Enable CORS
+app.UseCors();
 
 app.Run();

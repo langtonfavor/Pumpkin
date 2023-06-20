@@ -25,3 +25,4 @@ C:\Users\MALTEQ\Documents\TodoApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagge
 C:\Users\MALTEQ\Documents\TodoApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\MALTEQ\Documents\TodoApi\obj\Debug\net6.0\TodoApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\MALTEQ\Documents\TodoApi\obj\Debug\net6.0\TodoApi.csproj.CopyComplete
+C:\Users\MALTEQ\Documents\TodoApi\bin\Debug\net6.0\Newtonsoft.Json.dll
