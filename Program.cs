@@ -19,6 +19,8 @@ builder.Services.AddSwaggerGen(c =>
 // Add services
 builder.Services.AddHttpClient();
 
+builder.Services.AddHostedService<BeerRandomEmailService>();
+
 // Enable CORS
 builder.Services.AddCors(options =>
 {
